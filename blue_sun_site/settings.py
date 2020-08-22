@@ -39,10 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #local
     'pages.apps.PagesConfig',
-    'users.apps.UsersConfig', #new
+    'users.apps.UsersConfig',
+    #third-party
+    'crispy_forms', #new
 ]
 
-AUTH_USER_MODEL = 'users.CustomUser' #new
+# django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4' #new
+
+AUTH_USER_MODEL = 'users.CustomUser' 
+
+# Middleware settings
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,6 +134,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
 
 # Redirect on login and logout
 LOGIN_REDIRECT_URL = 'home'
